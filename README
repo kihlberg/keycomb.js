@@ -1,0 +1,15 @@
+RUNNING TESTS
+-------------
+
+To run tests you'll need mocha and jsdom installed.
+
+$ npm install mocha
+$ npm install jsdom
+
+When mocha is installed just type "make test" in the root dir.
+
+
+BUILDING
+--------
+
+TO build from sources just type "make" in the root dir.
