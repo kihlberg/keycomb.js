@@ -3,6 +3,7 @@
  *
  * @author Olof Kihlberg <olof.kihlberg@gmail.com>
  */
+
 var keycomb = (function() {
 
   /**
@@ -94,6 +95,13 @@ var keycomb = (function() {
     var _this = this;
 
     /**
+     * Combination of characters to listen for
+     *
+     * @type {Array}
+     */
+    this.chars = chars;
+
+    /**
      * Keep track of what character we want next
      *
      * @type {Number}
@@ -125,14 +133,14 @@ var keycomb = (function() {
       var code = e.which ? e.which : e.keyCode;
       var c = keys[code] === undefined ? String.fromCharCode(code) : keys[code];
 
-      if (c === chars[wanted]) {
-        wanted++;
-        if (wanted === chars.length) {
-          wanted = 0;
-          _this.exexute();
+      if (c === _this.chars[_this.wanted]) {
+        _this.wanted++;
+        if (_this.wanted === _this.chars.length) {
+          _this.wanted = 0;
+          _this.trigger();
         }
       } else {
-        wanted = 0;
+        _this.wanted = 0;
       }
 
     };
@@ -142,6 +150,8 @@ var keycomb = (function() {
       element.addEventListener('keyup', onKeyUp, false);
     } else if (element.attachEvent) {
       element.attachEvent('onkeyup', onKeyUp);
+    } else {
+      throw 'Unable to add event listener to element';
     }
 
   };
@@ -149,7 +159,7 @@ var keycomb = (function() {
   /**
    * Execute the callback with correct context
    */
-  Combination.prototype.trigger = function() {
+  Combination.prototype.trigger = function() {
 
     this.callback.apply(this.context);
 

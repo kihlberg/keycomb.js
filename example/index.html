@@ -4,13 +4,18 @@
 	<title>keycomb.js example</title>
 </head>
 <body>
+	<script type="text/javascript" src="../src/keycomb.js"></script>
+	<script type="text/javascript">
 
-  <script type="text/javascript">
+		// Example of how to use it
 
-		// Example
-		new keycomb.Combination(['H', 'E', 'L', 'L', 'O'], function() {
-      alert('world!');
-    });
+		var comb = ['H', 'E', 'L', 'L', 'O'];
+		var element = document.getElementsByTagName('body')[0];
+		var callback = function() {
+			alert('world!');
+		};
+
+		new keycomb.Combination(comb, callback, element);
 
 	</script>
 </body>
